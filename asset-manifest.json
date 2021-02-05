@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/metrologia-R-R/static/css/main.78c5b15d.chunk.css",
-    "main.js": "/metrologia-R-R/static/js/main.54bede95.chunk.js",
-    "main.js.map": "/metrologia-R-R/static/js/main.54bede95.chunk.js.map",
+    "main.js": "/metrologia-R-R/static/js/main.8c35e176.chunk.js",
+    "main.js.map": "/metrologia-R-R/static/js/main.8c35e176.chunk.js.map",
     "runtime-main.js": "/metrologia-R-R/static/js/runtime-main.2c4da070.js",
     "runtime-main.js.map": "/metrologia-R-R/static/js/runtime-main.2c4da070.js.map",
     "static/js/2.e20dff9b.chunk.js": "/metrologia-R-R/static/js/2.e20dff9b.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.2c4da070.js",
     "static/js/2.e20dff9b.chunk.js",
     "static/css/main.78c5b15d.chunk.css",
-    "static/js/main.54bede95.chunk.js"
+    "static/js/main.8c35e176.chunk.js"
   ]
 }
