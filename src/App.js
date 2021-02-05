@@ -3,18 +3,17 @@ import { fabOperador, obtenerRR, redondear } from './logic/calculator';
 
 export default function App() {
   //Data de las mediciones // 1 operador con 1 equipo con 1 medida
-  let [datos, setDatos] = useState([[[0]]]);
+  let [datos, setDatos] = useState([[[0, 0]], [[0, 0]]]);
+  //Cuantos operadores hay
+  let [currentR, setCurrentR] = useState(2);
 
-  //Cuantos arreglos hay
-  let [currentR, setCurrentR] = useState(1);
-  //Longitud d
+  //Cuantos equipos hay
   let [currentEquipos, setCurrentEquipos] = useState(1);
-  //Ensayos
-  let [currentN, setCurrentN] = useState(1);
 
-  let [currentT, setCurrentT] = useState(15);
-  let [currentK1, setCurrentK1] = useState(2.21);
-  let [currentK2, setCurrentK2] = useState(2.7);
+  //Cuantos ensayos hay
+  let [currentN, setCurrentN] = useState(2);
+
+  let [currentT, setCurrentT] = useState(1);
 
   let [currentRR, setCurrentRR] = useState({
     RR: 0,
@@ -77,12 +76,38 @@ export default function App() {
       T: currentT,
       N: currentN,
       R: currentR,
-      K1: currentK1,
-      K2: currentK2,
+      K1: obtenerK1(),
+      K2: obtenerK2(),
       operadores,
     });
 
     setCurrentRR(newRR);
+  }
+
+  function obtenerK1() {
+    switch (currentN) {
+      case 5:
+        return 2.21;
+      case 4:
+        return 2.5;
+      case 3:
+        return 3.05;
+      case 2:
+        return 4.56;
+    }
+  }
+
+  function obtenerK2() {
+    switch (currentR) {
+      case 5:
+        return 2.08;
+      case 4:
+        return 2.3;
+      case 3:
+        return 2.7;
+      case 2:
+        return 3.65;
+    }
   }
 
   return (
@@ -121,20 +146,33 @@ export default function App() {
           </div>
         </div>
       </div>
-
       <div className="app-controls">
-        <button className="btn btn-warning" onClick={addOperador}>
-          Añadir operador
-        </button>
-        <button className="btn btn-warning" onClick={addEquipo}>
-          Añadir equipo
-        </button>
-        <button className="btn btn-warning" onClick={addEnsayo}>
-          Añadir ensayo
-        </button>
-        <button className="btn btn-success" onClick={calcularRR}>
-          Calcular R&R
-        </button>
+        <div className="app-controls-inputs">
+          <div className="control-input">
+            <label htmlFor="">Tolerancia</label>
+            <input onChange={(e) => setCurrentT(e.target.value)} />
+          </div>
+        </div>
+        <div className="app-controls-buttons">
+          <button
+            className="btn btn-warning"
+            onClick={currentR < 5 ? addOperador : null}
+          >
+            Añadir operador
+          </button>
+          <button className="btn btn-warning" onClick={addEquipo}>
+            Añadir equipo
+          </button>
+          <button
+            className="btn btn-warning"
+            onClick={currentN < 5 ? addEnsayo : null}
+          >
+            Añadir ensayo
+          </button>
+          <button className="btn btn-success" onClick={calcularRR}>
+            Calcular R&R
+          </button>
+        </div>
       </div>
 
       <div className="app-content">
