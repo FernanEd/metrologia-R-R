@@ -1,4 +1,4 @@
-import { fabOperador, obtenerRR } from './calculator';
+import { fabOperador, obtenerRR, redondear } from './calculator';
 
 let operador1 = fabOperador([
   [35.8, 35.6, 30.4, 30.2, 31.1],
@@ -26,6 +26,7 @@ it('funciona rangos', () => {
   expect(operador2.obtenerRangos()).toEqual([6.3, 6.7]);
 });
 
+/*
 it('funciona repetitibilidad', () => {
   expect(
     obtenerRR({
@@ -38,6 +39,7 @@ it('funciona repetitibilidad', () => {
     }).repetitibilidad
   ).toEqual(0.9135);
 });
+*/
 
 //Ancho <-> Numero de equipos, Cada arreglo es un equipo
 let operadorA = fabOperador([
@@ -66,11 +68,80 @@ it('funciona repetitibilidad', () => {
   expect(
     obtenerRR({
       T: 2.9,
-      N: 3,
+      N: 5,
       R: 3,
       K1: 2.21,
       K2: 2.7,
       operadores: [operadorA, operadorB, operadorC],
     }).repetitibilidad * 100
   ).toEqual(167.66);
+});
+
+/*
+it('funciona reproducibilidad', () => {
+  expect(
+    obtenerRR({
+      T: 2.9,
+      N: 5,
+      R: 3,
+      K1: 2.21,
+      K2: 2.7,
+      operadores: [operadorA, operadorB, operadorC],
+    }).reproducibilidad * 100
+  ).toEqual(0);
+});
+*/
+
+//Ancho <-> Numero de equipos, Cada arreglo es un equipo
+let operador2A = fabOperador([
+  [570.7, 570.7, 570.7, 570.8, 570.8],
+  [570.5, 570.6, 570.5, 570.6, 570.5],
+  [570.7, 570.8, 570.7, 570.8, 570.7],
+]);
+
+let operador2B = fabOperador([
+  [570.8, 570.7, 570.8, 570.8, 570.7],
+  [570.6, 570.6, 570.6, 570.7, 570.7],
+  [570.8, 570.8, 570.9, 570.8, 570.9],
+]);
+
+let operador2C = fabOperador([
+  [570.7, 570.8, 570.8, 570.8, 570.8],
+  [570.6, 570.7, 570.7, 570.6, 570.7],
+  [570.8, 570.8, 570.9, 570.9, 570.8],
+]);
+
+it('funciona promedios', () => {
+  expect(operadorB.obtenerRangos()).toEqual([6.5, 0.2, 0.2]);
+});
+
+it('funciona repetitibilidad', () => {
+  expect(
+    (obtenerRR({
+      T: 11.7,
+      N: 5,
+      R: 3,
+      K1: 2.21,
+      K2: 2.7,
+      operadores: [operador2A, operador2B, operador2C],
+    }).repetitibilidad *
+      10000) /
+      100
+  ).toEqual(1.89);
+});
+
+it('funciona reproducibilidad', () => {
+  expect(
+    redondear(
+      obtenerRR({
+        T: 11.7,
+        N: 5,
+        R: 3,
+        K1: 2.21,
+        K2: 2.7,
+        operadores: [operador2A, operador2B, operador2C],
+      }).reproducibilidad * 100,
+      2
+    )
+  ).toEqual(2.02);
 });

@@ -24,17 +24,19 @@ function obtenerRR({ T, N, R, K1, K2, operadores }) {
     promedio(operador.obtenerPromedios())
   );
 
-  const XD = redondear(Math.max(...promedios) - Math.min(...promedios));
+  const XD = redondear(Math.max(...promedios) - Math.min(...promedios), 2);
 
   const repetitibilidad = redondear((K1 * RANGOS) / T);
 
-  const reproducibilidad = (K2 * XD) ** 2 - (K1 * RANGOS) ** 2 / (N * R);
+  const cocientes = (K2 * XD) ** 2 - (K1 * RANGOS) ** 2 / (N * R);
+
+  const reproducibilidad = cocientes > 0 ? Math.sqrt(cocientes) / T : 0;
 
   return { repetitibilidad, reproducibilidad };
 }
 
-function redondear(n) {
-  return Math.round(n * 10000) / 10000;
+function redondear(n, decimales = 4) {
+  return Math.round(n * 10 ** decimales) / 10 ** decimales;
 }
 
-export { fabOperador, obtenerRR };
+export { fabOperador, obtenerRR, redondear };
