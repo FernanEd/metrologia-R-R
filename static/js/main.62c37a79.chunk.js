@@ -1,2 +1,0 @@
-(this["webpackJsonpmetrologia-rr"]=this["webpackJsonpmetrologia-rr"]||[]).push([[0],{10:function(t,e,r){"use strict";r.r(e);var n=r(1),o=r.n(n),c=r(3),i=r.n(c),s=(r(8),r(0));function a(){return Object(s.jsx)("div",{children:"Hola"})}i.a.render(Object(s.jsx)(o.a.StrictMode,{children:Object(s.jsx)(a,{})}),document.getElementById("root"))},8:function(t,e,r){}},[[10,1,2]]]);
-//# sourceMappingURL=main.62c37a79.chunk.js.map
