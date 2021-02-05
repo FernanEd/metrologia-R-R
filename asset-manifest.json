@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/metrologia-R-R/static/css/main.78c5b15d.chunk.css",
-    "main.js": "/metrologia-R-R/static/js/main.8c35e176.chunk.js",
-    "main.js.map": "/metrologia-R-R/static/js/main.8c35e176.chunk.js.map",
+    "main.css": "/metrologia-R-R/static/css/main.3eec61e9.chunk.css",
+    "main.js": "/metrologia-R-R/static/js/main.5e6f7b1d.chunk.js",
+    "main.js.map": "/metrologia-R-R/static/js/main.5e6f7b1d.chunk.js.map",
     "runtime-main.js": "/metrologia-R-R/static/js/runtime-main.2c4da070.js",
     "runtime-main.js.map": "/metrologia-R-R/static/js/runtime-main.2c4da070.js.map",
-    "static/js/2.e20dff9b.chunk.js": "/metrologia-R-R/static/js/2.e20dff9b.chunk.js",
-    "static/js/2.e20dff9b.chunk.js.map": "/metrologia-R-R/static/js/2.e20dff9b.chunk.js.map",
+    "static/js/2.9267871c.chunk.js": "/metrologia-R-R/static/js/2.9267871c.chunk.js",
+    "static/js/2.9267871c.chunk.js.map": "/metrologia-R-R/static/js/2.9267871c.chunk.js.map",
     "index.html": "/metrologia-R-R/index.html",
-    "static/css/main.78c5b15d.chunk.css.map": "/metrologia-R-R/static/css/main.78c5b15d.chunk.css.map",
-    "static/js/2.e20dff9b.chunk.js.LICENSE.txt": "/metrologia-R-R/static/js/2.e20dff9b.chunk.js.LICENSE.txt"
+    "static/css/main.3eec61e9.chunk.css.map": "/metrologia-R-R/static/css/main.3eec61e9.chunk.css.map",
+    "static/js/2.9267871c.chunk.js.LICENSE.txt": "/metrologia-R-R/static/js/2.9267871c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2c4da070.js",
-    "static/js/2.e20dff9b.chunk.js",
-    "static/css/main.78c5b15d.chunk.css",
-    "static/js/main.8c35e176.chunk.js"
+    "static/js/2.9267871c.chunk.js",
+    "static/css/main.3eec61e9.chunk.css",
+    "static/js/main.5e6f7b1d.chunk.js"
   ]
 }
