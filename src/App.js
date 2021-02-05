@@ -21,6 +21,8 @@ export default function App() {
     reproducibilidad: 0,
   });
 
+  let [isCalculated, setIsCalculated] = useState(false);
+
   function addOperador() {
     let newR = currentR;
     setCurrentR(newR + 1);
@@ -82,6 +84,7 @@ export default function App() {
     });
 
     setCurrentRR(newRR);
+    setIsCalculated(true);
   }
 
   function obtenerK1() {
@@ -137,12 +140,15 @@ export default function App() {
           </div>
         </div>
         <div className="rr-rating">
-          <div className="rr-rating-title">Good enough.</div>
+          <div className="rr-rating-title"></div>
           <div className="rr-rating-desc">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime
-            fugit ratione modi, amet possimus atque. Dolorum commodi similique
-            maiores quas unde dolores, quasi itaque et recusandae architecto
-            totam voluptatem odit?
+            {isCalculated && currentRR.RR * 100 < 10
+              ? 'El sistema de medición es aceptable.'
+              : currentRR.RR * 100 >= 10 && currentRR.RR * 100 < 30
+              ? 'El sistema de medición es aceptable según su uso, aplicación o costo del instrumento de medición.'
+              : currentRR.RR * 100 >= 30
+              ? 'El sistema de medicion no es aceptable.'
+              : 'Resultados.'}
           </div>
         </div>
       </div>
