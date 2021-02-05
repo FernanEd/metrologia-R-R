@@ -16,7 +16,11 @@ export default function App() {
   let [currentK1, setCurrentK1] = useState(2.21);
   let [currentK2, setCurrentK2] = useState(2.7);
 
-  let [currentRR, setCurrentRR] = useState({});
+  let [currentRR, setCurrentRR] = useState({
+    RR: 0,
+    repetitibilidad: 0,
+    reproducibilidad: 0,
+  });
 
   function addOperador() {
     let newR = currentR;
@@ -24,7 +28,17 @@ export default function App() {
 
     //Añadiendo un equipo default
     let newDatos = datos;
-    newDatos.push([[0]]);
+    let newOperador = [];
+
+    for (let i of Array(currentEquipos)) {
+      let newEquipo = [];
+      for (let i of Array(currentN)) {
+        newEquipo.push(0);
+      }
+      newOperador.push(newEquipo);
+    }
+
+    newDatos.push(newOperador);
     setDatos(newDatos);
   }
 
@@ -73,13 +87,96 @@ export default function App() {
 
   return (
     <div>
-      <button onClick={addOperador}>Añadir operador</button>
-      <button onClick={addEquipo}>Añadir equipo</button>
-      <button onClick={addEnsayo}>Añadir ensayo</button>
-      <button onClick={calcularRR}>Calcular R&R</button>
+      <div className="app-resultados">
+        <div className="resultados-wrapper">
+          <div className="resultado">
+            <div className="resultado-label">RR</div>
+            <div className="resultado-content">
+              {currentRR.RR != undefined &&
+                `${redondear(currentRR.RR * 100, 2)}%`}
+            </div>
+          </div>
+          <div className="resultado">
+            <div className="resultado-label">Repetitibilidad</div>
+            <div className="resultado-content">
+              {currentRR.RR != undefined &&
+                `${redondear(currentRR.repetitibilidad * 100, 2)}%`}
+            </div>
+          </div>
+          <div className="resultado">
+            <div className="resultado-label">Reproducibilidad</div>
+            <div className="resultado-content">
+              {currentRR.RR != undefined &&
+                `${redondear(currentRR.reproducibilidad * 100, 2)}%`}
+            </div>
+          </div>
+        </div>
+        <div className="rr-rating">
+          <div className="rr-rating-title">Good enough.</div>
+          <div className="rr-rating-desc">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime
+            fugit ratione modi, amet possimus atque. Dolorum commodi similique
+            maiores quas unde dolores, quasi itaque et recusandae architecto
+            totam voluptatem odit?
+          </div>
+        </div>
+      </div>
 
-      {currentRR.RR}
+      <div className="app-controls">
+        <button className="btn btn-warning" onClick={addOperador}>
+          Añadir operador
+        </button>
+        <button className="btn btn-warning" onClick={addEquipo}>
+          Añadir equipo
+        </button>
+        <button className="btn btn-warning" onClick={addEnsayo}>
+          Añadir ensayo
+        </button>
+        <button className="btn btn-success" onClick={calcularRR}>
+          Calcular R&R
+        </button>
+      </div>
 
+      <div className="app-content">
+        <table className="main-table">
+          <tbody>
+            <tr>
+              <td className="equipo-td"></td>
+              {[...Array(currentEquipos)].map((equipo, i) => (
+                <td className="equipo-td" key={i}>
+                  <div>Equipo {i + 1}</div>
+                </td>
+              ))}
+            </tr>
+
+            {[...Array(currentR)].map((operador, operadorIndx) => (
+              <tr className="operador-tr" key={operadorIndx}>
+                <td className="operador-td">
+                  <div>Operador {operadorIndx + 1}</div>
+                </td>
+
+                {[...Array(currentEquipos)].map((equipo, i) => (
+                  <td className="medidas-td" key={i}>
+                    <div className="medidas-container">
+                      {[...Array(currentN)].map((medida, j) => (
+                        <td key={j}>
+                          <input
+                            onChange={(e) =>
+                              handleInput(e.target.value, operadorIndx, i, j)
+                            }
+                          />
+                        </td>
+                      ))}
+                    </div>
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/*
       <div className="operador-wrapper">
         <div className="operador-equipos">
           {[...Array(currentEquipos)].map((equipo, i) => {
@@ -117,6 +214,7 @@ export default function App() {
           );
         })}
       </div>
+      */}
     </div>
   );
 }
