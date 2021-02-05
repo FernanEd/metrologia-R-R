@@ -26,7 +26,6 @@ it('funciona rangos', () => {
   expect(operador2.obtenerRangos()).toEqual([6.3, 6.7]);
 });
 
-/*
 it('funciona repetitibilidad', () => {
   expect(
     obtenerRR({
@@ -39,7 +38,6 @@ it('funciona repetitibilidad', () => {
     }).repetitibilidad
   ).toEqual(0.9135);
 });
-*/
 
 //Ancho <-> Numero de equipos, Cada arreglo es un equipo
 let operadorA = fabOperador([
@@ -77,7 +75,6 @@ it('funciona repetitibilidad', () => {
   ).toEqual(167.66);
 });
 
-/*
 it('funciona reproducibilidad', () => {
   expect(
     obtenerRR({
@@ -90,7 +87,22 @@ it('funciona reproducibilidad', () => {
     }).reproducibilidad * 100
   ).toEqual(0);
 });
-*/
+
+it('funciona RR', () => {
+  expect(
+    redondear(
+      obtenerRR({
+        T: 2.9,
+        N: 5,
+        R: 3,
+        K1: 2.21,
+        K2: 2.7,
+        operadores: [operadorA, operadorB, operadorC],
+      }).RR * 100,
+      2
+    )
+  ).toEqual(167.66);
+});
 
 //Ancho <-> Numero de equipos, Cada arreglo es un equipo
 let operador2A = fabOperador([
@@ -110,10 +122,6 @@ let operador2C = fabOperador([
   [570.6, 570.7, 570.7, 570.6, 570.7],
   [570.8, 570.8, 570.9, 570.9, 570.8],
 ]);
-
-it('funciona promedios', () => {
-  expect(operadorB.obtenerRangos()).toEqual([6.5, 0.2, 0.2]);
-});
 
 it('funciona repetitibilidad', () => {
   expect(
@@ -144,4 +152,47 @@ it('funciona reproducibilidad', () => {
       2
     )
   ).toEqual(2.02);
+});
+
+it('funciona RR', () => {
+  expect(
+    redondear(
+      obtenerRR({
+        T: 11.7,
+        N: 5,
+        R: 3,
+        K1: 2.21,
+        K2: 2.7,
+        operadores: [operador2A, operador2B, operador2C],
+      }).RR * 100,
+      2
+    )
+  ).toEqual(2.77);
+});
+
+//Ancho <-> Numero de equipos, Cada arreglo es un equipo
+let operador3A = fabOperador([
+  [12, 42],
+  [42, 12],
+]);
+
+let operador3B = fabOperador([
+  [32, 45],
+  [45, 32],
+]);
+
+it('funciona repetitibilidad', () => {
+  expect(
+    redondear(
+      obtenerRR({
+        T: 15,
+        N: 2,
+        R: 2,
+        K1: 2.21,
+        K2: 2.7,
+        operadores: [operador3A, operador3B],
+      }).RR * 100,
+      2
+    )
+  ).toEqual(343.67);
 });

@@ -1,6 +1,8 @@
 function fabOperador(medidas) {
   let equipos = [...medidas];
 
+  const objLiteral = () => equipos;
+
   const obtenerRangos = () =>
     equipos.map((medicion) => {
       return redondear(Math.max(...medicion) - Math.min(...medicion));
@@ -8,7 +10,7 @@ function fabOperador(medidas) {
 
   const obtenerPromedios = () => equipos.map((medicion) => promedio(medicion));
 
-  return { obtenerPromedios, obtenerRangos };
+  return { objLiteral, obtenerPromedios, obtenerRangos };
 }
 
 function promedio(arreglo) {
@@ -32,7 +34,9 @@ function obtenerRR({ T, N, R, K1, K2, operadores }) {
 
   const reproducibilidad = cocientes > 0 ? Math.sqrt(cocientes) / T : 0;
 
-  return { repetitibilidad, reproducibilidad };
+  const RR = Math.sqrt(repetitibilidad ** 2 + reproducibilidad ** 2);
+
+  return { RR, repetitibilidad, reproducibilidad, x: promedios };
 }
 
 function redondear(n, decimales = 4) {
