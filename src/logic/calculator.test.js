@@ -188,11 +188,11 @@ it('funciona repetitibilidad', () => {
         T: 15,
         N: 2,
         R: 2,
-        K1: 2.21,
-        K2: 2.7,
+        K1: 4.56,
+        K2: 3.65,
         operadores: [operador3A, operador3B],
       }).RR * 100,
       2
     )
-  ).toEqual(343.67);
+  ).toEqual(653.6);
 });

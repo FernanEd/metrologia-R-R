@@ -35,43 +35,7 @@ p {
   margin: 0;
 }
 
-.main-table {
-  border-collapse: collapse;
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
-}
-
-.main-table td {
-  text-align: center;
-  white-space: nowrap;
-  padding: 0;
-}
-
-.operador-td,
-.equipo-td {
-  background-color: var(--dark);
-  color: var(--light);
-}
-
-.operador-td div,
-.equipo-td div {
-  padding: 0.5rem;
-}
-
-.medidas-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.medidas-container input {
-  flex: 1;
-  padding: 0.5em 1em;
-
-  border: 1px solid rgba(0, 0, 0, 0.3);
-}
-
-.operador-tr {
-  border-top: 1px solid var(--secondary);
-}
+/* BUTTONS */
 
 .btn {
   cursor: pointer;
@@ -101,11 +65,15 @@ p {
   color: var(--light);
 }
 
+/* APP DIVS */
+
 .app-content {
   margin: 2em;
   display: flex;
   justify-content: center;
 }
+
+/* RESULTS */
 
 .app-resultados {
   margin: 2em;
@@ -146,6 +114,8 @@ p {
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
 }
 
+/* CONTROLS */
+
 .app-controls {
   display: flex;
   flex-direction: column;
@@ -184,4 +154,47 @@ p {
   display: flex;
   justify-content: center;
   gap: 0.5em;
+}
+
+/* TABLE */
+
+.main-table {
+  border-collapse: collapse;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
+}
+
+.main-table td {
+  text-align: center;
+  white-space: nowrap;
+  padding: 0;
+  margin: 2em;
+}
+
+.table-label {
+  background-color: var(--dark);
+  color: var(--light);
+}
+
+.table-label2 {
+  background-color: var(--secondary);
+  color: var(--light);
+}
+
+.table-td-operador {
+  border-top: 2px solid var(--secondary);
+}
+
+.table-td-operador div,
+.table-td-equipo div {
+  padding: 0.5rem;
+}
+
+.table-td-ensayo div {
+  display: flex;
+}
+
+.table-td-ensayo div input {
+  flex: 1;
+  padding: 0.5em;
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { fabOperador, obtenerRR, redondear } from './logic/calculator';
 
 export default function App() {
+  const maxOperadores = 10;
+  const maxEnsayos = 5;
   //Data de las mediciones // 1 operador con 1 equipo con 1 medida
   let [datos, setDatos] = useState([[[0, 0]], [[0, 0]]]);
   //Cuantos operadores hay
@@ -102,6 +104,16 @@ export default function App() {
 
   function obtenerK2() {
     switch (currentR) {
+      case 10:
+        return 1.62;
+      case 9:
+        return 1.67;
+      case 8:
+        return 1.74;
+      case 7:
+        return 1.82;
+      case 6:
+        return 1.93;
       case 5:
         return 2.08;
       case 4:
@@ -152,6 +164,7 @@ export default function App() {
           </div>
         </div>
       </div>
+
       <div className="app-controls">
         <div className="app-controls-inputs">
           <div className="control-input">
@@ -162,7 +175,7 @@ export default function App() {
         <div className="app-controls-buttons">
           <button
             className="btn btn-warning"
-            onClick={currentR < 5 ? addOperador : null}
+            onClick={currentR < maxOperadores ? addOperador : null}
           >
             Añadir operador
           </button>
@@ -171,7 +184,7 @@ export default function App() {
           </button>
           <button
             className="btn btn-warning"
-            onClick={currentN < 5 ? addEnsayo : null}
+            onClick={currentN < maxEnsayos ? addEnsayo : null}
           >
             Añadir ensayo
           </button>
@@ -185,80 +198,46 @@ export default function App() {
         <table className="main-table">
           <tbody>
             <tr>
-              <td className="equipo-td"></td>
-              {[...Array(currentEquipos)].map((equipo, i) => (
-                <td className="equipo-td" key={i}>
-                  <div>Equipo {i + 1}</div>
+              <td className="table-label"></td>
+              <td className="table-label"></td>
+              {[...Array(currentN)].map((ensayo, j) => (
+                <td className="table-label table-td-equipo " key={j}>
+                  <div>Ensayo {j + 1}</div>{' '}
                 </td>
               ))}
             </tr>
-
-            {[...Array(currentR)].map((operador, operadorIndx) => (
-              <tr className="operador-tr" key={operadorIndx}>
-                <td className="operador-td">
-                  <div>Operador {operadorIndx + 1}</div>
+            {[...Array(currentR)].map((operador, opIndx) => (
+              <>
+                <td
+                  rowSpan={currentEquipos + 1}
+                  className="table-label table-td-operador"
+                  key={opIndx}
+                >
+                  <div>Operador {opIndx + 1}</div>
                 </td>
-
                 {[...Array(currentEquipos)].map((equipo, i) => (
-                  <td className="medidas-td" key={i}>
-                    <div className="medidas-container">
-                      {[...Array(currentN)].map((medida, j) => (
-                        <td key={j}>
+                  <tr key={i}>
+                    <td className="table-label2 table-td-equipo">
+                      <div>Equipo {i + 1}</div>
+                    </td>
+                    {[...Array(currentN)].map((ensayo, j) => (
+                      <td className="table-td-ensayo" key={j}>
+                        <div>
                           <input
                             onChange={(e) =>
-                              handleInput(e.target.value, operadorIndx, i, j)
+                              handleInput(e.target.value, opIndx, i, j)
                             }
                           />
-                        </td>
-                      ))}
-                    </div>
-                  </td>
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
                 ))}
-              </tr>
+              </>
             ))}
           </tbody>
         </table>
       </div>
-
-      {/*
-      <div className="operador-wrapper">
-        <div className="operador-equipos">
-          {[...Array(currentEquipos)].map((equipo, i) => {
-            return (
-              <div className="operador-equipo" key={i}>
-                <div className="operador-equipo-title">Equipo {i + 1}</div>
-              </div>
-            );
-          })}
-        </div>
-
-        {[...Array(currentR)].map((operador, operadorIndx) => {
-          return (
-            <div className="operador-card" key={operadorIndx}>
-              <div className="operador-title">Operador {operadorIndx + 1}</div>
-
-              {[...Array(currentEquipos)].map((equipo, i) => {
-                return (
-                  <div className="operador-medidas" key={i}>
-                    {[...Array(currentN)].map((medida, j) => {
-                      return (
-                        <div key={j}>
-                          <input
-                            onChange={(e) =>
-                              handleInput(e.target.value, operadorIndx, i, j)
-                            }
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })}
-      </div>
-      */}
     </div>
   );
 }
