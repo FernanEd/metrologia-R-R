@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { fabOperador, obtenerRR, redondear } from './logic/calculator';
 
+import anime from 'animejs';
+
 export default function App() {
   const maxOperadores = 10;
   const maxEnsayos = 5;
@@ -87,6 +89,20 @@ export default function App() {
 
     setCurrentRR(newRR);
     setIsCalculated(true);
+
+    //Modificar colores del resultado
+    anime({
+      targets: '.rr-rating-title',
+      backgroundColor:
+        newRR.RR * 100 < 10
+          ? '#4a8'
+          : newRR.RR * 100 >= 10 && newRR.RR * 100 < 30
+          ? '#da2'
+          : newRR.RR * 100 >= 30
+          ? '#c46'
+          : '#4a8',
+      duration: 1000,
+    });
   }
 
   function obtenerK1() {
@@ -152,15 +168,26 @@ export default function App() {
           </div>
         </div>
         <div className="rr-rating">
-          <div className="rr-rating-title"></div>
-          <div className="rr-rating-desc">
+          <div className="rr-rating-title">
             {isCalculated && currentRR.RR * 100 < 10
               ? 'El sistema de medición es aceptable.'
               : currentRR.RR * 100 >= 10 && currentRR.RR * 100 < 30
               ? 'El sistema de medición es aceptable según su uso, aplicación o costo del instrumento de medición.'
               : currentRR.RR * 100 >= 30
               ? 'El sistema de medicion no es aceptable.'
-              : 'Resultados.'}
+              : 'Resultados...'}
+          </div>
+          <div className="rr-rating-desc">
+            {isCalculated &&
+            currentRR.repetitibilidad > currentRR.reproducibilidad
+              ? 'El instrumento necesita mantenimiento, el equipo requiere ser rediseñado para ser más rígido,\
+               el montaje o ubicación donde se efectúan las mediciones necesita ser mejorado y/o,\
+                existe una variabilidad excesiva entre las partes. '
+              : currentRR.repetitibilidad < currentRR.reproducibilidad
+              ? 'El operador necesita mejor entrenamiento en como utilizar y como leer el instrumento,\
+               la indicación del instrumento no es clara, \
+               No se han mantenido condiciones de reproducibilidad (ambientales, montaje, ruidos, etc.) y/o el instrumento de medición presenta deriva.'
+              : '...'}
           </div>
         </div>
       </div>

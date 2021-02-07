@@ -105,9 +105,26 @@ p {
 }
 
 .rr-rating {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 300px;
+}
+
+.rr-rating-title {
   background-color: var(--success);
   color: var(--light);
-  width: 200px;
+  padding: 1em;
+  font-weight: 700;
+  text-align: center;
+
+  border-radius: 0.5em;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
+}
+
+.rr-rating-desc {
+  background-color: var(--light);
+  color: var(--dark);
   padding: 1em;
 
   border-radius: 0.5em;
@@ -126,10 +143,10 @@ p {
 }
 
 .app-controls-inputs {
+  background-color: var(--warning);
   padding: 1em;
   border-radius: 0.5em;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
-  background-color: var(--light);
 
   display: flex;
   justify-content: center;
