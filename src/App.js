@@ -71,17 +71,15 @@ export default function App() {
     let newDatos = datos;
     newDatos[operador][equipo][medida] = Number(valor);
     setDatos(newDatos);
-
-    console.log(datos);
   }
 
   function calcularRR() {
     let operadores = datos.map((medidas) => fabOperador(medidas));
 
     let newRR = obtenerRR({
-      T: currentT,
-      N: currentN,
-      R: currentR,
+      T: Number(currentT),
+      N: Number(currentN),
+      R: Number(currentEquipos),
       K1: obtenerK1(),
       K2: obtenerK2(),
       operadores,

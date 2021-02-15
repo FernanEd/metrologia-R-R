@@ -26,7 +26,7 @@ function obtenerRR({ T, N, R, K1, K2, operadores }) {
     promedio(operador.obtenerPromedios())
   );
 
-  const XD = redondear(Math.max(...promedios) - Math.min(...promedios), 2);
+  const XD = redondear(Math.max(...promedios) - Math.min(...promedios));
 
   const repetitibilidad = redondear((K1 * RANGOS) / T);
 
@@ -36,10 +36,23 @@ function obtenerRR({ T, N, R, K1, K2, operadores }) {
 
   const RR = Math.sqrt(repetitibilidad ** 2 + reproducibilidad ** 2);
 
+  console.log({
+    RANGOS,
+    XD,
+    repetitibilidad,
+    cocientes,
+    K1,
+    K2,
+    T,
+    N,
+    R,
+    reproducibilidad,
+  });
+
   return { RR, repetitibilidad, reproducibilidad, x: promedios };
 }
 
-function redondear(n, decimales = 4) {
+function redondear(n, decimales = 8) {
   return Math.round(n * 10 ** decimales) / 10 ** decimales;
 }
 
